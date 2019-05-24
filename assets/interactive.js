@@ -24,7 +24,7 @@
 //     i++;
 //     output.innerText = minuteChanger;
 // }
-
+let ballOrder = [];
 let ballQueue = [];
 let input = document.getElementById("input");
 let submit = document.getElementById("submit");
@@ -46,11 +46,6 @@ function arrayMaker() {
     } 
 }
 
-function shifter() {
-    let temp = ballQueue.shift();
-    console.log(temp);
-}
-
 function clock() {
     ballQueue;
     let singles = [];
@@ -60,20 +55,34 @@ function clock() {
     
     let addHour = fives.shift();
     
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 300; i++) {
+        
         if(singles.length === 4) {
-            console.log(singles);
+            // console.log(singles);
             let addFive = ballQueue.shift();
             fives.push(addFive); 
-            for(let j = 0; j < 4; j++) {
+            for (let j = 0; j < 4; j++) {
+                // console.log(singles.length);
                 let backOfTheLine = singles.pop();
                 ballQueue.push(backOfTheLine);
-                console.log(ballQueue);
             }
+
+            if (fives.length === 11) {
+                console.log(fives);
+                let addHour = ballQueue.shift();
+                hours.push(addHour);
+                for(let k = 0; k < 11; k++) {
+                    let toTheBack = fives.pop();
+                    ballQueue.push(toTheBack);
+                }
+                console.log(hours);
+            }
+        } else {
+            // console.log(singles);
+            let addSingle = ballQueue.shift();
+            singles.push(addSingle);
         }
         
-        let addSingle = ballQueue.shift();
-        singles[i] = addSingle;
         // console.log(ballQueue.length + " + " + singles.length);
         // console.log(singles);
     }
