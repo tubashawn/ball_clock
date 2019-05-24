@@ -43,6 +43,7 @@ function arrayMaker() {
     let temp = input.value;
     for (let i = 0; i < temp; i++) {
     ballQueue.push(i);
+    ballOrder.push(i);
     } 
 }
 
@@ -51,20 +52,18 @@ function clock() {
     function hourRollback() {
         for (let l = 0; l < 12; l++) {
             let allTheWayBack = hours.pop();
-            console.log("HOUR ROLLBACK " + hours.length);
             ballQueue.push(allTheWayBack);    
         }
     }
+    ballOrder;
     ballQueue;
     let singles = [];
     let fives = [];
     let hours = [];
     let am = true;
     let days = 0;
-    
-    let addHour = fives.shift();
-    
-    for (let i = 0; i < 40000; i++) {
+    for (let i = 0; i < 300; i++) {
+        
         
         if(singles.length === 4) {
             let addFive = ballQueue.shift();
@@ -77,39 +76,29 @@ function clock() {
             if (fives.length === 11) {
                 let addHour = ballQueue.shift();
                 hours.push(addHour);
-                // console.log("HOURS " + hours.length);
                 for (let k = 0; k < 11; k++) {
                     let toTheBack = fives.pop();
                     ballQueue.push(toTheBack);
                 }
-                // console.log(ballQueue);
+
                 if(hours.length === 12 && am === true) {
                     am = false;
                     hourRollback();
-                    console.log("Is it morning? " + am);
+                    console.log("Good afternoon");
                 } else if (hours.length === 12 && am === false) {
                     am = true;
                     days++;
                     hourRollback();
-                    console.log("Is it morning? " + am);
-                    console.log("It has been " + days + " since you started your clock");
-                }
-                    console.log(ballQueue);
-                    // days++;
-                    // console.log("It's been " + days + " days since you started the clock");
-                    // console.log(hours);
+                    console.log("Good morning");
+                    // console.log("Is it morning? " + am);
+                    console.log("It has been " + days + " days since you started your clock");
                     
-                    // console.log(hours);
-                    // console.log(ballQueue);
-                
+                }
             }
         } else {
-            // console.log(singles);
             let addSingle = ballQueue.shift();
             singles.push(addSingle);
         }
-        
-        // console.log(ballQueue.length + " + " + singles.length);
-        // console.log(singles);
     }
+    
 }
