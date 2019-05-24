@@ -57,13 +57,24 @@ function clock() {
     let fives = [];
     let hours = [];
     let days = 0;
-    let addFive = singles.shift();
+    
     let addHour = fives.shift();
+    
     for (let i = 0; i < 5; i++) {
-    let addSingle = ballQueue.shift();
-    singles[i] = addSingle;
-    console.log(ballQueue.length + " + " + singles.length);
-    // console.log(singles);
+        if(singles.length === 4) {
+            console.log(singles);
+            let addFive = ballQueue.shift();
+            fives.push(addFive); 
+            for(let j = 0; j < 4; j++) {
+                let backOfTheLine = singles.pop();
+                ballQueue.push(backOfTheLine);
+                console.log(ballQueue);
+            }
+        }
+        
+        let addSingle = ballQueue.shift();
+        singles[i] = addSingle;
+        // console.log(ballQueue.length + " + " + singles.length);
+        // console.log(singles);
     }
-
 }
