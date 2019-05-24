@@ -49,12 +49,14 @@ function arrayMaker() {
 
 
 function clock() {
+    
     function hourRollback() {
         for (let l = 0; l < 12; l++) {
             let allTheWayBack = hours.pop();
             ballQueue.push(allTheWayBack);    
         }
     }
+
     ballOrder;
     ballQueue;
     let singles = [];
@@ -62,8 +64,13 @@ function clock() {
     let hours = [];
     let am = true;
     let days = 0;
-    for (let i = 0; i < 300; i++) {
+    for (let i = 0; i < 2400000; i++) {
         
+        if (i > 0 && ballOrder.toString() === ballQueue.toString()) {
+            console.log("THis should break everything!");
+            console.log(days);
+            break;
+        }
         
         if(singles.length === 4) {
             let addFive = ballQueue.shift();
