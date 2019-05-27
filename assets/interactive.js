@@ -64,13 +64,7 @@ function clock() {
     let hours = [];
     let am = true;
     let days = 0;
-    for (let i = 0; i < 2400000; i++) {
-        
-        if (i > 0 && ballOrder.toString() === ballQueue.toString()) {
-            console.log("THis should break everything!");
-            console.log(days);
-            break;
-        }
+    do {
         
         if(singles.length === 4) {
             let addFive = ballQueue.shift();
@@ -107,5 +101,5 @@ function clock() {
             singles.push(addSingle);
         }
     }
-    
+    while (ballOrder.toString() !== ballQueue.toString());
 }
