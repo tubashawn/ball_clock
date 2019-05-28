@@ -30,13 +30,16 @@ let input = document.getElementById("input");
 let submit = document.getElementById("submit");
 let output = document.getElementById("empty-div");
 let nextOutput = document.getElementById("next-div");
+let count = 0;
+let days = 0;
 
 submit.addEventListener("click", function() {
-  // output.textContent = "You entered " + input.value;
+    // output.textContent = "You entered " + input.value;
+    output.textContent = "You have put " + input.value + " balls into your clock.";
+    
     arrayMaker();
-    output.textContent = "You have put " + ballQueue.length + " balls into your clock";
-    nextOutput.textContent = ballQueue[0];
     clock();
+    nextOutput.textContent = "It took " + days + " days to cycle through the balls you put in the clock.";
 });
 
 function arrayMaker() {
@@ -63,9 +66,11 @@ function clock() {
     let fives = [];
     let hours = [];
     let am = true;
-    let days = 0;
+    
+    
     do {
         
+        count++;
         if(singles.length === 4) {
             let addFive = ballQueue.shift();
             fives.push(addFive); 
