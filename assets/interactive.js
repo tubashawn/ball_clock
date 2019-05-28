@@ -1,45 +1,36 @@
+// var now = require("performance-now");
+// var start = now();
+// var end = now();
+// console.log(start.toFixed(3)); // the number of milliseconds the current node process is running
+// console.log((start-end).toFixed(3)); // ~ 0.002 on my system
 
-
-// let submitButton = document.getElementById("submit-button"),
-//     output = document.getElementById("output"),
-//     numberInput = document.getElementById("number-input"),
-//     minutes = [1, 2, 3, 4, 5];
-
-
-
-// submitButton.addEventListener("click", function() {
-//     alert("This worked");
-// });
-
-
-// let i = 0;
-// let minuteChanger = minutes[i];
-// if(output.textContent === "Test") {
-//     output.innerText = minuteChanger;
-//     i++;
-// } else if(output.textContent === minutes[4]) {
-//     i = 0;
-//     output.innerText = minuteChanger;
-// } else {
-//     i++;
-//     output.innerText = minuteChanger;
-// }
 let ballOrder = [];
 let ballQueue = [];
 let input = document.getElementById("input");
 let submit = document.getElementById("submit");
 let output = document.getElementById("empty-div");
 let nextOutput = document.getElementById("next-div");
+let thirdOutput = document.getElementById("third-div");
 let count = 0;
 let days = 0;
 
+
 submit.addEventListener("click", function() {
-    // output.textContent = "You entered " + input.value;
-    output.textContent = "You have put " + input.value + " balls into your clock.";
+    let t1 = performance.now();
+    
+    output.textContent = "You have put " + input.value + " balls into your clock. ";
     
     arrayMaker();
     clock();
+    let t2 = performance.now();
+    
+    let elapsed = (t2 - t1);
+    
     nextOutput.textContent = "It took " + days + " days to cycle through the balls you put in the clock.";
+
+    thirdOutput.textContent = "This calculation took " + elapsed.toFixed(2) + " milliseconds."
+
+    
 });
 
 function arrayMaker() {
@@ -90,14 +81,14 @@ function clock() {
                 if(hours.length === 12 && am === true) {
                     am = false;
                     hourRollback();
-                    console.log("Good afternoon");
+                    // console.log("Good afternoon");
                 } else if (hours.length === 12 && am === false) {
                     am = true;
                     days++;
                     hourRollback();
-                    console.log("Good morning");
+                    // console.log("Good morning");
                     // console.log("Is it morning? " + am);
-                    console.log("It has been " + days + " days since you started your clock");
+                    // console.log("It has been " + days + " days since you started your clock");
                     
                 }
             }
@@ -108,3 +99,5 @@ function clock() {
     }
     while (ballOrder.toString() !== ballQueue.toString());
 }
+
+
