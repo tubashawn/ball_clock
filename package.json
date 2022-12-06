@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/tubashawn/ball_clock#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "performance": "^1.1.1",
     "performance-now": "^2.1.0"
   }
